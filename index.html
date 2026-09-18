@@ -147,8 +147,11 @@ tr:last-child td{border-bottom:0}
 pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;background:var(--card-2);border:1px solid var(--rule);border-left:4px solid var(--ink);border-radius:0 10px 10px 0;padding:14px 18px;margin:0 0 14px;overflow-x:auto;white-space:pre}
 
 /* ---------- footer ---------- */
-.foot{max-width:1080px;margin:0 auto;padding:0 24px 70px;color:var(--muted);font-size:13.4px;border-top:1px solid var(--rule);padding-top:20px}
-.foot p{max-width:none}
+.footer{max-width:1080px;margin:26px auto 0;padding:20px 24px 70px;color:var(--muted);font-size:13.4px;border-top:1px solid var(--rule)}
+.footer span{font-weight:600;color:var(--ink-2)}
+.qrtable{width:100%;border-collapse:collapse;font-size:14.4px;background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:0 0 6px}
+.qrtable th,.qrtable td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-2)}
+.qrtable tr:last-child td{border-bottom:0}
 @media print{.topbar,.toc-wrap{display:none}}
 </style>
 
@@ -604,13 +607,8 @@ pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;backgrou
 </div><!-- /main -->
 
 <div class="footer">
-  <span>Planaria Studio</span> · Filing System Workflow Guide · July 2025
-</div>
-
-<div class="foot">
-  <p>Version September 2026. A guide under the <a href="https://planariastudio.github.io/planaria-employee-handbook/">Employee Handbook</a>.</p>
-</div>
-<script>window.__GUIDE_NAV__ = [{"href":"https://planariastudio.github.io/planaria-employee-handbook/","label":"Handbook"}];</script>
+  <span>Planaria Studio</span> · Filing System Workflow Guide · September 2026. A guide under the <a href="https://planariastudio.github.io/planaria-employee-handbook/">Employee Handbook</a>.
+</div><script>window.__GUIDE_NAV__ = [{"href":"https://planariastudio.github.io/planaria-employee-handbook/","label":"Handbook"}];</script>
 <script>
 // Adds the cross-links into the guide's own top bar. Keeps the guide files themselves
 // untouched, so the same file can be published as an artifact or to the web.
