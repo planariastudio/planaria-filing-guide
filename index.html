@@ -209,6 +209,10 @@ figure img{max-width:100%;height:auto;display:block;border:1px solid var(--rule)
 .shotlink:hover::after,.shotlink:focus-visible::after{opacity:1}
 @media (prefers-reduced-motion:reduce){.shotlink::after{transition:none}}
 figcaption{max-width:var(--maxw)}
+.dl{max-width:var(--maxw);background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--mark);border-radius:0 10px 10px 0;padding:13px 17px;margin:0 0 18px}
+.dl a{text-decoration-color:var(--mark);text-decoration-thickness:2px}
+.strip{font-size:13.2px;color:var(--ink-2);background:var(--card-2);border:1px solid var(--rule);border-top:0;border-radius:0 0 10px 10px;margin:-1px 0 0;padding:10px 14px;max-width:none;line-height:1.6}
+figure:has(.strip) img{border-radius:10px 10px 0 0;border-bottom:0}
 pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--ink);border-radius:0 10px 10px 0;padding:14px 18px;margin:0 0 16px;max-width:var(--maxw);overflow-x:auto;white-space:pre}
 .formula{font-family:"JetBrains Mono";font-size:14.5px;font-weight:700;background:var(--card-2);border:1px solid var(--rule);border-radius:8px;padding:11px 14px;margin:10px 0 0;max-width:none;letter-spacing:-0.01em;overflow-x:auto;white-space:nowrap}
 </style>
@@ -272,6 +276,8 @@ pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;backgrou
       <a class="shotlink" href="img/shot-01.jpg" target="_blank" rel="noopener"><img src="img/shot-01.jpg" alt="A Drive project folder showing the four root folders: 01 DOCUMENTS, 02 ASSETS, 03 PROJECTS, 04 EXPORT" loading="lazy"></a>
       <figcaption>The four root folders every project must have.</figcaption>
     </figure>
+
+    <p class="dl"><a href="https://drive.google.com/file/d/154-m4IDUuVFp9_phvrXCkOlG7g9vzR5j/view" target="_blank" rel="noopener"><strong>Download the folder template</strong></a> and start from it rather than making the folders by hand. It already has all four roots and every subfolder in the right place.</p>
   </div>
 </div>
 
@@ -285,6 +291,7 @@ pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;backgrou
     </div>
     <figure>
       <a class="shotlink" href="img/shot-02.jpg" target="_blank" rel="noopener"><img src="img/shot-02.jpg" alt="01 DOCUMENTS opened, showing subfolders 00 OTHER, 01 BRIEF and 02 FONT" loading="lazy"></a>
+      <p class="strip"><span class="f">00 OTHER</span> camera reports and references &middot; <span class="f">01 BRIEF</span> briefs and storyboards &middot; <span class="f">02 FONT</span> every typeface</p>
       <figcaption>Fonts live with the project, not on your machine only. The next editor does not have your font library.</figcaption>
     </figure>
   </div>
@@ -300,7 +307,7 @@ pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;backgrou
     </div>
     <figure>
       <a class="shotlink" href="img/shot-03.jpg" target="_blank" rel="noopener"><img src="img/shot-03.jpg" alt="02 ASSETS opened, showing its seven subfolders" loading="lazy"></a>
-      <figcaption>Seven subfolders, and the first one is the one people get wrong. The note under <span class="f">02 SOUND</span> is cut off in this slide, so the table below is the reliable version.</figcaption>
+      <figcaption>Seven subfolders, and the first one is the one people get wrong. The note under <span class="f">02 SOUND</span> runs off the bottom of this slide, so the table below carries every note in full.</figcaption>
     </figure>
 
     <div class="tbl">
@@ -334,6 +341,7 @@ pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;backgrou
     </div>
     <figure>
       <a class="shotlink" href="img/shot-04.jpg" target="_blank" rel="noopener"><img src="img/shot-04.jpg" alt="03 PROJECTS opened, showing subfolders for Premiere Pro, After Effects and DaVinci Resolve" loading="lazy"></a>
+      <p class="strip"><span class="f">01 PREMIERE PRO</span> &middot; <span class="f">02 AFTER EFFECTS</span> &middot; <span class="f">03 DAVINCI RESOLVE</span></p>
       <figcaption>On a long project, duplicate the project file regularly rather than trusting one.</figcaption>
     </figure>
   </div>
@@ -349,6 +357,7 @@ pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;backgrou
     </div>
     <figure>
       <a class="shotlink" href="img/shot-05.jpg" target="_blank" rel="noopener"><img src="img/shot-05.jpg" alt="04 EXPORT opened, showing 01 INTERNAL, 02 CLIENT and 00 OTHERS" loading="lazy"></a>
+      <p class="strip"><span class="f">01 INTERNAL</span> previews and snippets &middot; <span class="f">02 CLIENT</span> deliverables &middot; <span class="f">00 OTHERS</span> subtitles, LUTs and stills</p>
       <figcaption>The split between internal and client is what stops a rough preview reaching a client by accident.</figcaption>
     </figure>
   </div>
