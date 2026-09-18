@@ -200,7 +200,16 @@ footer{max-width:var(--maxw);color:var(--muted);font-size:13.4px;border-top:1px 
 footer p{max-width:none}
 @media print{.sidenav,.topbar{display:none}.wrap{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+figure{max-width:none}
+figure img{max-width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+.shotlink{display:block;text-decoration:none;background:none;position:relative;width:fit-content;max-width:100%}
+.shotlink:hover{background:none}
+.shotlink:hover img{border-color:var(--ink)}
+.shotlink::after{content:"open full size";position:absolute;right:10px;bottom:10px;font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mark-ink);background:var(--mark);border-radius:4px;padding:3px 7px;opacity:0;transition:opacity .12s}
+.shotlink:hover::after,.shotlink:focus-visible::after{opacity:1}
+@media (prefers-reduced-motion:reduce){.shotlink::after{transition:none}}
+figcaption{max-width:var(--maxw)}
+pre.tree{font-family:"JetBrains Mono";font-size:12.8px;line-height:1.75;background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--ink);border-radius:0 10px 10px 0;padding:14px 18px;margin:0 0 16px;max-width:var(--maxw);overflow-x:auto;white-space:pre}
 .formula{font-family:"JetBrains Mono";font-size:14.5px;font-weight:700;background:var(--card-2);border:1px solid var(--rule);border-radius:8px;padding:11px 14px;margin:10px 0 0;max-width:none;letter-spacing:-0.01em;overflow-x:auto;white-space:nowrap}
 </style>
 
@@ -260,7 +269,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>Every project folder contains exactly <strong>four</strong> root folders: <span class="f">01 DOCUMENTS</span>, <span class="f">02 ASSETS</span>, <span class="f">03 PROJECTS</span>, <span class="f">04 EXPORT</span>. No more, no fewer, no renaming.</p>
     </div>
     <figure>
-      <img src="img/shot-01.jpg" alt="A Drive project folder showing the four root folders: 01 DOCUMENTS, 02 ASSETS, 03 PROJECTS, 04 EXPORT" loading="lazy">
+      <a class="shotlink" href="img/shot-01.jpg" target="_blank" rel="noopener"><img src="img/shot-01.jpg" alt="A Drive project folder showing the four root folders: 01 DOCUMENTS, 02 ASSETS, 03 PROJECTS, 04 EXPORT" loading="lazy"></a>
       <figcaption>The four root folders every project must have.</figcaption>
     </figure>
   </div>
@@ -275,7 +284,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>Three subfolders. <span class="f">00 OTHER</span> for camera reports and references, <span class="f">01 BRIEF</span> for briefs and storyboards, <span class="f">02 FONT</span> for every typeface the project uses.</p>
     </div>
     <figure>
-      <img src="img/shot-02.jpg" alt="01 DOCUMENTS opened, showing subfolders 00 OTHER, 01 BRIEF and 02 FONT" loading="lazy">
+      <a class="shotlink" href="img/shot-02.jpg" target="_blank" rel="noopener"><img src="img/shot-02.jpg" alt="01 DOCUMENTS opened, showing subfolders 00 OTHER, 01 BRIEF and 02 FONT" loading="lazy"></a>
       <figcaption>Fonts live with the project, not on your machine only. The next editor does not have your font library.</figcaption>
     </figure>
   </div>
@@ -290,9 +299,24 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>Seven subfolders: <span class="f">00 CLIENT ASSETS</span>, <span class="f">01 FOOTAGE</span>, <span class="f">02 SOUND</span>, <span class="f">03 STILL GRAPHIC</span>, <span class="f">04 GFX</span>, <span class="f">05 COLOR GRADED</span>, <span class="f">06 PROXY</span>.</p>
     </div>
     <figure>
-      <img src="img/shot-03.jpg" alt="02 ASSETS opened, showing its seven subfolders" loading="lazy">
-      <figcaption>Seven subfolders, and the first one is the one people get wrong.</figcaption>
+      <a class="shotlink" href="img/shot-03.jpg" target="_blank" rel="noopener"><img src="img/shot-03.jpg" alt="02 ASSETS opened, showing its seven subfolders" loading="lazy"></a>
+      <figcaption>Seven subfolders, and the first one is the one people get wrong. The note under <span class="f">02 SOUND</span> is cut off in this slide, so the table below is the reliable version.</figcaption>
     </figure>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Subfolder</th><th>What goes in it</th></tr></thead>
+        <tbody>
+          <tr><td><span class="f">00 CLIENT ASSETS</span></td><td>Every visual asset the client sent. Nothing you sourced yourself</td></tr>
+          <tr><td><span class="f">01 FOOTAGE</span></td><td>Footage you downloaded: stock, YouTube, anything sourced</td></tr>
+          <tr><td><span class="f">02 SOUND</span></td><td>Music, sound effects and anything else audio, including audio the client sent</td></tr>
+          <tr><td><span class="f">03 STILL GRAPHIC</span></td><td>Stills: pictures, flat graphics and similar</td></tr>
+          <tr><td><span class="f">04 GFX</span></td><td>Motion graphics, including templates</td></tr>
+          <tr><td><span class="f">05 COLOR GRADED</span></td><td>Grade exports coming back from Resolve</td></tr>
+          <tr><td><span class="f">06 PROXY</span></td><td>Proxy files, with a subfolder per shoot day</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="flag stop">
       <span class="lab">Never mix client assets with media you sourced</span>
       <p>Anything the client sent goes in <span class="f">00 CLIENT ASSETS</span> and nowhere else. Stock footage and downloaded music go in <span class="f">01 FOOTAGE</span> and <span class="f">02 SOUND</span>. Mixing them means nobody can tell later what was licensed and what was delivered.</p>
@@ -309,7 +333,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>One subfolder per application: <span class="f">01 PREMIERE PRO</span>, <span class="f">02 AFTER EFFECTS</span>, <span class="f">03 DAVINCI RESOLVE</span>.</p>
     </div>
     <figure>
-      <img src="img/shot-04.jpg" alt="03 PROJECTS opened, showing subfolders for Premiere Pro, After Effects and DaVinci Resolve" loading="lazy">
+      <a class="shotlink" href="img/shot-04.jpg" target="_blank" rel="noopener"><img src="img/shot-04.jpg" alt="03 PROJECTS opened, showing subfolders for Premiere Pro, After Effects and DaVinci Resolve" loading="lazy"></a>
       <figcaption>On a long project, duplicate the project file regularly rather than trusting one.</figcaption>
     </figure>
   </div>
@@ -324,7 +348,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p><span class="f">01 INTERNAL</span> for previews and snippets, <span class="f">02 CLIENT</span> for anything the client receives, <span class="f">00 OTHERS</span> for subtitle files, LUTs and stills.</p>
     </div>
     <figure>
-      <img src="img/shot-05.jpg" alt="04 EXPORT opened, showing 01 INTERNAL, 02 CLIENT and 00 OTHERS" loading="lazy">
+      <a class="shotlink" href="img/shot-05.jpg" target="_blank" rel="noopener"><img src="img/shot-05.jpg" alt="04 EXPORT opened, showing 01 INTERNAL, 02 CLIENT and 00 OTHERS" loading="lazy"></a>
       <figcaption>The split between internal and client is what stops a rough preview reaching a client by accident.</figcaption>
     </figure>
   </div>
@@ -336,11 +360,11 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
     <h3>Worked example</h3>
     <p>A real project as it arrived, and where each part of it belongs.</p>
     <figure>
-      <img src="img/shot-06.jpg" alt="A delivered project folder before filing, containing audio, visuals, textures, a script and proxies" loading="lazy">
+      <a class="shotlink" href="img/shot-06.jpg" target="_blank" rel="noopener"><img src="img/shot-06.jpg" alt="A delivered project folder before filing, containing audio, visuals, textures, a script and proxies" loading="lazy"></a>
       <figcaption>How it arrives.</figcaption>
     </figure>
     <figure>
-      <img src="img/shot-07.jpg" alt="The same folder annotated, with each item mapped to its destination folder" loading="lazy">
+      <a class="shotlink" href="img/shot-07.jpg" target="_blank" rel="noopener"><img src="img/shot-07.jpg" alt="The same folder annotated, with each item mapped to its destination folder" loading="lazy"></a>
       <figcaption>Where each part of it goes.</figcaption>
     </figure>
     <div class="tbl">
@@ -370,9 +394,27 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>Start every new project from this bin layout: <span class="f">00 SEQUENCES</span> at the top, then <span class="f">02 ASSETS</span> with the same subfolders as the drive.</p>
     </div>
     <figure>
-      <img src="img/shot-08.jpg" alt="The Premiere Pro project panel with the full bin structure expanded" loading="lazy">
+      <a class="shotlink" href="img/shot-08.jpg" target="_blank" rel="noopener"><img src="img/shot-08.jpg" alt="The Premiere Pro project panel with the full bin structure expanded" loading="lazy"></a>
       <figcaption>Sequences first, then assets mirroring the drive.</figcaption>
     </figure>
+    <p>The bins nest two levels deep. This is the whole tree:</p>
+    <pre class="tree">00 SEQUENCES
+02 ASSETS
+  00 CLIENT ASSETS
+  01 FOOTAGE
+  02 SOUND
+      01 MUSIC
+      02 SFX
+      03 AMBIENCE
+  03 STILL GRAPHIC
+      00 OTHER
+      01 ASSETS
+      SCREENSHOTS
+  04 GFX
+  05 COLOR GRADED
+      LUT &amp; STILLS
+  06 PROXY</pre>
+
     <div class="flag ok">
       <span class="lab">Import into a bin, not into the root</span>
       <p>Never leave footage loose at the top of the project panel. Drop it into its matching bin as you import. Tidying it later never happens.</p>
@@ -393,9 +435,27 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>The same structure as Premiere, except compositions live in <span class="f">00 COMP</span> at the top instead of sequences.</p>
     </div>
     <figure>
-      <img src="img/shot-09.jpg" alt="The After Effects project panel showing 00 COMP at the top and 02 ASSETS below it" loading="lazy">
+      <a class="shotlink" href="img/shot-09.jpg" target="_blank" rel="noopener"><img src="img/shot-09.jpg" alt="The After Effects project panel showing 00 COMP at the top and 02 ASSETS below it" loading="lazy"></a>
       <figcaption><span class="f">00 COMP</span> holds every composition. <span class="f">02 ASSETS</span> mirrors the drive.</figcaption>
     </figure>
+    <p>The bins nest two levels deep. This is the whole tree:</p>
+    <pre class="tree">00 COMP
+02 ASSETS
+  00 CLIENT ASSETS
+  01 FOOTAGE
+  02 SOUND
+      01 MUSIC
+      02 SFX
+      03 AMBIENCE
+  03 STILL GRAPHIC
+      00 OTHER
+      01 ASSETS
+      SCREENSHOTS
+  04 GFX
+  05 COLOR GRADED
+      LUT &amp; STILLS
+  06 PROXY</pre>
+
   </div>
 </div>
 
@@ -412,7 +472,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>The Resolve media pool has three bins and no others: <span class="f">FOOTAGE</span>, <span class="f">XML</span>, <span class="f">REFERENCE</span>.</p>
     </div>
     <figure>
-      <img src="img/shot-10.jpg" alt="The DaVinci Resolve media pool with three bins: FOOTAGE, XML and REFERENCE" loading="lazy">
+      <a class="shotlink" href="img/shot-10.jpg" target="_blank" rel="noopener"><img src="img/shot-10.jpg" alt="The DaVinci Resolve media pool with three bins: FOOTAGE, XML and REFERENCE" loading="lazy"></a>
       <figcaption>Three bins. Resolve is a grading tool here, not an editing one.</figcaption>
     </figure>
     <div class="flag">
@@ -436,7 +496,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p class="formula">YYMMDD_Project Name_[ADDITIONAL INFO]_Draft 00</p>
     </div>
     <figure>
-      <img src="img/shot-11.jpg" alt="The export naming formula broken into its parts" loading="lazy">
+      <a class="shotlink" href="img/shot-11.jpg" target="_blank" rel="noopener"><img src="img/shot-11.jpg" alt="The export naming formula broken into its parts" loading="lazy"></a>
       <figcaption>The same formula applies to files on Drive and uploads to Frame.io.</figcaption>
     </figure>
     <div class="tbl">
@@ -461,7 +521,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>Always look for an existing project first. Do not create duplicates or variations of a project name without approval.</p>
     </div>
     <figure>
-      <img src="img/shot-12.jpg" alt="Left, four near-identical project names for the same client. Right, projects named consistently in the YYMM format" loading="lazy">
+      <a class="shotlink" href="img/shot-12.jpg" target="_blank" rel="noopener"><img src="img/shot-12.jpg" alt="Left, four near-identical project names for the same client. Right, projects named consistently in the YYMM format" loading="lazy"></a>
       <figcaption>Four names for one client on the left. One consistent naming pattern on the right.</figcaption>
     </figure>
   </div>
@@ -476,7 +536,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>A recurring project is named <span class="f">YYMM &ndash; Client &ndash; Title</span>. Never a written month and year.</p>
     </div>
     <figure>
-      <img src="img/shot-13.jpg" alt="Correct YYMM dash client dash title naming beside incorrect written month and year folders" loading="lazy">
+      <a class="shotlink" href="img/shot-13.jpg" target="_blank" rel="noopener"><img src="img/shot-13.jpg" alt="Correct YYMM dash client dash title naming beside incorrect written month and year folders" loading="lazy"></a>
       <figcaption>Numbers sort. Written months do not.</figcaption>
     </figure>
   </div>
@@ -491,7 +551,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>Everything for a project lives in <strong>one</strong> Frame.io folder. Inside it, make <strong>two stacks</strong>: one for internal drafts, one for client deliverables. Do not split them into separate folders.</p>
     </div>
     <figure>
-      <img src="img/shot-14.jpg" alt="Left, separate CLIENT and INTERNAL folders. Right, one folder containing two stacks" loading="lazy">
+      <a class="shotlink" href="img/shot-14.jpg" target="_blank" rel="noopener"><img src="img/shot-14.jpg" alt="Left, separate CLIENT and INTERNAL folders. Right, one folder containing two stacks" loading="lazy"></a>
       <figcaption>Separate folders on the left. Two stacks in one folder on the right.</figcaption>
     </figure>
     <ol>
@@ -511,7 +571,7 @@ figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);bor
       <p>A handover folder is named <span class="f">HANDOVER &ndash; YYMMDD &ndash; PROJECT NAME</span>. <strong>Never delete a file without approval.</strong></p>
     </div>
     <figure>
-      <img src="img/shot-15.jpg" alt="A correctly named handover folder" loading="lazy">
+      <a class="shotlink" href="img/shot-15.jpg" target="_blank" rel="noopener"><img src="img/shot-15.jpg" alt="A correctly named handover folder" loading="lazy"></a>
       <figcaption>Deleting is the one action on this page that cannot be undone. Ask first, every time.</figcaption>
     </figure>
   </div>
