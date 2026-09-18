@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Where every file goes: Drive folders, Premiere and After Effects bins, and how exports and Frame.io projects are named.">
+<meta name="robots" content="noindex">
+<title>Filing System Guide</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗂</text></svg>">
+<style>html,body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Filing System Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@600;700;800&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+:root{
+  --paper:#FAFAF7; --card:#FFFFFF; --card-2:#F4F4F1;
+  --ink:#000000; --ink-2:#2E2E2E; --muted:#6B6B68;
+  --rule:#E4E4DF; --rule-2:#EFEFEA;
+  --acc:#000000; --acc-2:#2E2E2E; --neon:#9DFF00;
+  --acc-soft:#F0FFD6;
+  --app-bg:#1C1C1C; --app-ink:#EDEDEA; --app-rule:#343434; --app-muted:#8E8E8A;
+  --ok:#1D7F48; --warn:#B0561A; --stop:#BC332A;
+  --mark:#FFC93C; --mark-ink:#6B4A00;
+  --ring:#000000;
+  --maxw:70ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151515; --card:#212121; --card-2:#1C1C1C;
+    --ink:#F4F4F2; --ink-2:#C9C9C6; --muted:#8E8E8A;
+    --rule:#343434; --rule-2:#282828;
+    --acc:#9DFF00; --acc-2:#B6FF3D; --acc-soft:#22300A; --neon:#9DFF00;
+    --app-bg:#0E0E0E; --app-ink:#E6E6E3; --app-rule:#2C2C2C; --app-muted:#8A8A86;
+    --ok:#52C285; --warn:#E5954A; --stop:#EE7169;
+    --mark:#FFD05C; --mark-ink:#3A2700;
+    --ring:#9DFF00;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151515; --card:#212121; --card-2:#1C1C1C;
+  --ink:#F4F4F2; --ink-2:#C9C9C6; --muted:#8E8E8A;
+  --rule:#343434; --rule-2:#282828;
+  --acc:#9DFF00; --acc-2:#B6FF3D; --acc-soft:#22300A; --neon:#9DFF00;
+  --app-bg:#0E0E0E; --app-ink:#E6E6E3; --app-rule:#2C2C2C; --app-muted:#8A8A86;
+  --ok:#52C285; --warn:#E5954A; --stop:#EE7169;
+  --mark-ink:#1A2600;
+  --ring:#9DFF00;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);background-image:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.035),transparent 60%);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Asta Sans",system-ui,sans-serif;letter-spacing:-0.02em;text-wrap:balance;margin:0}
+.mono,code{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+a{color:var(--ink);text-underline-offset:3px;text-decoration-thickness:1.5px;text-decoration-color:var(--muted)}
+a:hover{text-decoration-color:var(--ink);background:var(--card-2)}
+a:focus-visible,.sidenav a:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:3px}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.topbar-in{max-width:1220px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font-family:"Asta Sans";font-weight:700;font-size:14px}
+.brand-mark{display:grid;place-items:center;flex:0 0 auto;color:var(--ink)}
+.brand-mark svg{width:19px;height:auto;display:block;fill:currentColor}
+.aud{margin-left:auto;font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:4px 11px}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1220px;margin:0 auto;padding:0 24px 96px;display:grid;grid-template-columns:216px minmax(0,1fr);gap:48px}
+@media (max-width:940px){.wrap{grid-template-columns:1fr;gap:0}}
+.sidenav{position:sticky;top:62px;align-self:start;padding-top:44px;font-size:13.5px}
+@media (max-width:940px){.sidenav{position:static;padding:22px 0 4px;border-bottom:1px solid var(--rule);margin-bottom:12px}}
+.sidenav .lbl{font-family:"JetBrains Mono";font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.sidenav ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:1px}
+@media (max-width:940px){.sidenav ul{flex-direction:row;flex-wrap:wrap;gap:6px}}
+.sidenav a{display:flex;gap:9px;color:var(--ink-2);text-decoration:none;padding:5px 9px;border-radius:6px}
+.sidenav a .pn{font-family:"JetBrains Mono";font-size:11px;color:var(--muted);flex:0 0 auto;padding-top:2px}
+.sidenav a:hover{background:var(--card);color:var(--ink)}
+@media (max-width:940px){.sidenav a{border:1px solid var(--rule);font-size:12.5px;padding:4px 9px}}
+main{padding-top:44px;min-width:0}
+
+/* ---------- masthead ---------- */
+.eyebrow{font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:0 0 14px;font-weight:700}
+h1{font-size:clamp(30px,5.2vw,46px);line-height:1.05;font-weight:700;margin-bottom:16px}
+.standfirst{font-size:18.5px;color:var(--ink-2);max-width:56ch;margin:0 0 30px}
+
+.docmeta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden;margin:0 0 34px}
+.docmeta div{background:var(--card);padding:12px 15px}
+.docmeta dt{font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.docmeta dd{margin:0;font-size:13.6px;font-weight:600;line-height:1.4}
+
+/* ---------- the numbers board ---------- */
+.board{margin:0 0 42px}
+.board-cap{font-family:"JetBrains Mono";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+@media (max-width:760px){.figs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fig{background:var(--card);padding:15px 15px 14px;display:flex;flex-direction:column;gap:3px}
+.fig b{font-family:"JetBrains Mono";font-size:23px;font-weight:700;line-height:1.05;color:var(--acc);font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.fig b small{font-size:13px;font-weight:500;letter-spacing:0}
+.fig span{font-size:12.6px;color:var(--muted);line-height:1.4}
+
+/* ---------- part bands ---------- */
+.part{margin:0 0 14px;padding:26px 0 0;border-top:3px solid var(--ink);display:flex;align-items:baseline;gap:16px;scroll-margin-top:72px}
+.part .pnum{font-family:"JetBrains Mono";font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);flex:0 0 auto}
+.part h2{font-size:27px;font-weight:700}
+.part-lede{color:var(--ink-2);max-width:var(--maxw);margin:2px 0 30px}
+
+/* ---------- clause ---------- */
+.clause{display:grid;grid-template-columns:58px minmax(0,1fr);gap:20px;margin:0 0 34px;scroll-margin-top:72px}
+@media (max-width:640px){.clause{grid-template-columns:1fr;gap:6px}}
+.cno{font-family:"JetBrains Mono";font-size:12.5px;font-weight:700;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.cbody{min-width:0}
+.cbody>h3{font-size:18.5px;font-weight:600;margin:0 0 10px}
+.cbody>:last-child{margin-bottom:0}
+p{margin:0 0 13px;max-width:var(--maxw)}
+ul,ol{margin:0 0 14px;padding-left:20px;max-width:var(--maxw)}
+li{margin-bottom:6px}
+strong{font-weight:600;color:var(--ink)}
+
+/* the two registers: the rule, and the doing */
+.the-rule{border-left:4px solid var(--ink);background:var(--card);border-radius:0 10px 10px 0;padding:15px 18px;margin:0 0 16px;max-width:var(--maxw)}
+.the-rule .lab{font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:700;margin:0 0 6px;display:block}
+.the-rule p:last-child{margin-bottom:0}
+.the-rule p{font-size:16.5px}
+
+.doing{margin:0 0 18px}
+.doing>.lab{font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 9px;display:flex;align-items:center;gap:9px}
+.doing>.lab::after{content:"";height:1px;flex:1;background:var(--rule)}
+
+.flag{border-left:3px solid var(--b,var(--rule));background:var(--card);border-radius:0 10px 10px 0;padding:13px 17px;margin:0 0 16px;max-width:var(--maxw)}
+.flag .lab{font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--b,var(--muted));font-weight:700;margin:0 0 5px;display:block}
+.flag p:last-child{margin-bottom:0}
+.flag p{font-size:15.4px}
+.flag.stop{--b:var(--stop)} .flag.warn{--b:var(--warn)} .flag.ok{--b:var(--ok)}
+
+/* ---------- tables ---------- */
+.tbl{overflow-x:auto;margin:0 0 18px;max-width:var(--maxw);border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14.4px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+th{font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num{font-family:"JetBrains Mono";font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- the month cycle graphic ---------- */
+.cycle{border:1px solid var(--rule);background:var(--card);border-radius:12px;padding:20px 20px 16px;margin:0 0 18px;max-width:var(--maxw)}
+.cycle-bar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin-bottom:12px}
+.cycle-end{font-family:"JetBrains Mono";font-size:11.5px;font-weight:700;color:var(--acc);white-space:nowrap;text-align:center;line-height:1.3}
+.cycle-end em{display:block;font-style:normal;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:2px}
+.cycle-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--acc-soft),var(--acc));position:relative}
+.cycle-track::after{content:"";position:absolute;right:0;top:-5px;bottom:-5px;width:2px;background:var(--stop)}
+.cycle-note{font-size:13.2px;color:var(--muted);margin:0}
+
+/* ---------- app screens ---------- */
+figure{margin:0 0 16px;max-width:var(--maxw)}
+figcaption{font-size:12.8px;color:var(--muted);margin-top:8px;line-height:1.5}
+.shot{background:var(--app-bg);border:1px solid var(--app-rule);border-radius:11px;overflow:hidden;color:var(--app-ink);font-size:13.5px}
+.shot-bar{display:flex;align-items:center;gap:7px;padding:8px 13px;border-bottom:1px solid var(--app-rule);font-family:"JetBrains Mono";font-size:10.5px;color:var(--app-muted);letter-spacing:.04em}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--app-rule)}
+.shot-body{padding:13px 14px}
+.navlab{font-family:"JetBrains Mono";font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--app-muted);margin:0 0 7px;padding:0 8px}
+.navitem{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:7px;font-size:13px;margin-bottom:2px}
+.navitem .gi{width:13px;height:13px;border-radius:3px;border:1.5px solid var(--app-muted);flex:0 0 auto}
+.tabs{display:flex;gap:2px;overflow-x:auto;padding:3px 0}
+.tab{padding:7px 11px;border-radius:7px;font-size:12.8px;white-space:nowrap;color:var(--app-muted);display:flex;align-items:center;gap:7px}
+.tab.on{color:var(--app-ink);font-weight:600}
+.field{border-bottom:1px solid var(--app-rule);padding:12px 10px}
+.field:last-child{border-bottom:0}
+.field .fl{font-weight:600;font-size:13.4px;margin:0 0 3px;display:flex;align-items:center;gap:8px;max-width:none}
+.field .fh{color:var(--app-muted);font-size:12.2px;line-height:1.5;margin:0 0 8px;max-width:none}
+.inputbox{border:1px solid var(--app-rule);border-radius:7px;padding:8px 11px;color:var(--app-muted);font-size:12.4px;background:color-mix(in srgb,#000 16%,transparent)}
+.inputbox.filled{color:var(--app-ink)}
+.picker{display:flex;flex-direction:column;gap:2px}
+.opt{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:6px;font-size:12.8px}
+.opt .sw{width:9px;height:9px;border-radius:2px;background:var(--c);flex:0 0 auto}
+.rowset{display:flex;flex-direction:column;gap:1px}
+.row{display:grid;grid-template-columns:130px minmax(0,1fr);gap:10px;padding:8px 10px;border-radius:7px;align-items:center}
+.row .k{color:var(--app-muted);font-size:12.4px}
+.row .v{font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.subs{display:flex;flex-direction:column}
+.sub{display:flex;align-items:center;gap:10px;padding:9px 10px;border-bottom:1px solid var(--app-rule);font-size:12.9px;border-radius:6px}
+.sub:last-child{border-bottom:0}
+.sub .ic{width:13px;height:13px;border-radius:3px;border:1.5px solid var(--app-muted);flex:0 0 auto}
+.sub .ic.done{background:var(--app-muted);border-color:var(--app-muted)}
+.sub .tag{margin-left:auto;font-family:"JetBrains Mono";font-size:9.5px;color:var(--app-muted)}
+.msg{background:var(--app-bg);border:1px solid var(--app-rule);border-radius:11px;padding:16px 17px;color:var(--app-ink)}
+.msg .h{font-family:"Asta Sans";font-weight:600;font-size:14.5px;margin:0 0 9px;max-width:none}
+.msg p{margin:0 0 9px;font-size:13.6px;line-height:1.58;color:var(--app-ink);max-width:none}
+.msg p:last-child{margin-bottom:0}
+.msg .b{font-weight:700}
+.msg .lk{color:#7FC4F5;text-decoration:underline;text-underline-offset:2px}
+.btn{display:inline-block;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;background:#2F6FED;color:#fff}
+.clickpin{margin-left:auto;font-family:"JetBrains Mono";font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#75530A;background:var(--mark);border-radius:4px;padding:2px 7px;white-space:nowrap}
+.mk{background:color-mix(in srgb,var(--mark) 17%,transparent);outline:2px solid var(--mark);outline-offset:-2px;border-radius:7px}
+.f{font-family:"JetBrains Mono";font-size:.86em;font-weight:500;background:var(--card-2);border:1px solid var(--rule);border-radius:5px;padding:1.5px 6px;white-space:nowrap}
+.st{font-family:"JetBrains Mono";font-size:.78em;font-weight:700;letter-spacing:.04em;border-radius:4px;padding:2.5px 7px;white-space:nowrap;color:#fff;background:var(--c,#7C848F)}
+
+footer{max-width:var(--maxw);color:var(--muted);font-size:13.4px;border-top:1px solid var(--rule);padding-top:20px;margin-top:8px}
+footer p{max-width:none}
+@media print{.sidenav,.topbar{display:none}.wrap{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+.formula{font-family:"JetBrains Mono";font-size:14.5px;font-weight:700;background:var(--card-2);border:1px solid var(--rule);border-radius:8px;padding:11px 14px;margin:10px 0 0;max-width:none;letter-spacing:-0.01em;overflow-x:auto;white-space:nowrap}
+</style>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="brand"><span class="brand-mark"><svg viewBox="0 0 497 662" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="83" y="0" width="332" height="83" rx="41.5"/><rect x="0" y="83" width="83" height="497" rx="41.5"/><rect x="415" y="83" width="82" height="247" rx="41"/><rect x="248" y="330" width="167" height="83" rx="41.5"/><rect x="248" y="330" width="83" height="250" rx="41.5"/><rect x="83" y="580" width="165" height="82" rx="41"/></svg></span> Planaria Studio</span>
+    <span class="aud">For editors</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<nav class="sidenav">
+  <p class="lbl">Contents</p>
+  <ul>
+    <li><a href="#p1"><span class="pn">1</span> Drive folders</a></li>
+    <li><a href="#p2"><span class="pn">2</span> Premiere bins</a></li>
+    <li><a href="#p3"><span class="pn">3</span> After Effects bins</a></li>
+    <li><a href="#p4"><span class="pn">4</span> Resolve</a></li>
+    <li><a href="#p5"><span class="pn">5</span> Frame.io &amp; naming</a></li>
+    <li><a href="#p6"><span class="pn">6</span> Cheat sheet</a></li>
+  </ul>
+  <p class="lbl">Parent document</p>
+  <ul>
+    <li><a href="https://planariastudio.github.io/planaria-employee-handbook/"><span class="pn">&rarr;</span> Employee Handbook</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<p class="eyebrow">Filing system · For editors · Version September 2026</p>
+<h1>Where every file goes</h1>
+<p class="standfirst">Folders on Drive, bins inside Premiere and After Effects, and how exports and Frame.io projects are named. Get this right and a handover takes minutes instead of a morning.</p>
+
+<dl class="docmeta">
+  <div><dt>Applies to</dt><dd>Every editor, every project</dd></div>
+  <div><dt>Covers</dt><dd>Drive, Premiere, After Effects, Resolve, Frame.io</dd></div>
+  <div><dt>Root folders</dt><dd>Exactly 4, every time</dd></div>
+  <div><dt>Naming</dt><dd>YYMMDD_Project_Draft n</dd></div>
+</dl>
+
+<div class="flag">
+  <span class="lab">Why it is worth the effort</span>
+  <p>Filing is the one thing on this page that only helps other people. You already know where your files are. This structure is so the next editor, the supervisor checking a cut, and you in six months all find them without asking.</p>
+</div>
+
+<!-- ============ PART 1 ============ -->
+<div class="part" id="p1"><span class="pnum">Part 1</span><h2>Drive folder structure</h2></div>
+<p class="part-lede">Four root folders, always the same four, in every project. Files go inside the right one or they may as well not exist.</p>
+
+<div class="clause" id="c11">
+  <div class="cno">1.1</div>
+  <div class="cbody">
+    <h3>The four root folders</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Every project folder contains exactly <strong>four</strong> root folders: <span class="f">01 DOCUMENTS</span>, <span class="f">02 ASSETS</span>, <span class="f">03 PROJECTS</span>, <span class="f">04 EXPORT</span>. No more, no fewer, no renaming.</p>
+    </div>
+    <figure>
+      <img src="img/shot-01.jpg" alt="A Drive project folder showing the four root folders: 01 DOCUMENTS, 02 ASSETS, 03 PROJECTS, 04 EXPORT" loading="lazy">
+      <figcaption>The four root folders every project must have.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="clause" id="c12">
+  <div class="cno">1.2</div>
+  <div class="cbody">
+    <h3>01 DOCUMENTS</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Three subfolders. <span class="f">00 OTHER</span> for camera reports and references, <span class="f">01 BRIEF</span> for briefs and storyboards, <span class="f">02 FONT</span> for every typeface the project uses.</p>
+    </div>
+    <figure>
+      <img src="img/shot-02.jpg" alt="01 DOCUMENTS opened, showing subfolders 00 OTHER, 01 BRIEF and 02 FONT" loading="lazy">
+      <figcaption>Fonts live with the project, not on your machine only. The next editor does not have your font library.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="clause" id="c13">
+  <div class="cno">1.3</div>
+  <div class="cbody">
+    <h3>02 ASSETS</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Seven subfolders: <span class="f">00 CLIENT ASSETS</span>, <span class="f">01 FOOTAGE</span>, <span class="f">02 SOUND</span>, <span class="f">03 STILL GRAPHIC</span>, <span class="f">04 GFX</span>, <span class="f">05 COLOR GRADED</span>, <span class="f">06 PROXY</span>.</p>
+    </div>
+    <figure>
+      <img src="img/shot-03.jpg" alt="02 ASSETS opened, showing its seven subfolders" loading="lazy">
+      <figcaption>Seven subfolders, and the first one is the one people get wrong.</figcaption>
+    </figure>
+    <div class="flag stop">
+      <span class="lab">Never mix client assets with media you sourced</span>
+      <p>Anything the client sent goes in <span class="f">00 CLIENT ASSETS</span> and nowhere else. Stock footage and downloaded music go in <span class="f">01 FOOTAGE</span> and <span class="f">02 SOUND</span>. Mixing them means nobody can tell later what was licensed and what was delivered.</p>
+    </div>
+  </div>
+</div>
+
+<div class="clause" id="c14">
+  <div class="cno">1.4</div>
+  <div class="cbody">
+    <h3>03 PROJECTS</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>One subfolder per application: <span class="f">01 PREMIERE PRO</span>, <span class="f">02 AFTER EFFECTS</span>, <span class="f">03 DAVINCI RESOLVE</span>.</p>
+    </div>
+    <figure>
+      <img src="img/shot-04.jpg" alt="03 PROJECTS opened, showing subfolders for Premiere Pro, After Effects and DaVinci Resolve" loading="lazy">
+      <figcaption>On a long project, duplicate the project file regularly rather than trusting one.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="clause" id="c15">
+  <div class="cno">1.5</div>
+  <div class="cbody">
+    <h3>04 EXPORT</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p><span class="f">01 INTERNAL</span> for previews and snippets, <span class="f">02 CLIENT</span> for anything the client receives, <span class="f">00 OTHERS</span> for subtitle files, LUTs and stills.</p>
+    </div>
+    <figure>
+      <img src="img/shot-05.jpg" alt="04 EXPORT opened, showing 01 INTERNAL, 02 CLIENT and 00 OTHERS" loading="lazy">
+      <figcaption>The split between internal and client is what stops a rough preview reaching a client by accident.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="clause" id="c16">
+  <div class="cno">1.6</div>
+  <div class="cbody">
+    <h3>Worked example</h3>
+    <p>A real project as it arrived, and where each part of it belongs.</p>
+    <figure>
+      <img src="img/shot-06.jpg" alt="A delivered project folder before filing, containing audio, visuals, textures, a script and proxies" loading="lazy">
+      <figcaption>How it arrives.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/shot-07.jpg" alt="The same folder annotated, with each item mapped to its destination folder" loading="lazy">
+      <figcaption>Where each part of it goes.</figcaption>
+    </figure>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>What arrived</th><th>Where it goes</th></tr></thead>
+        <tbody>
+          <tr><td>Audio stems</td><td><span class="f">02 ASSETS / 02 SOUND</span></td></tr>
+          <tr><td>Visuals and textures from the client</td><td><span class="f">02 ASSETS / 00 CLIENT ASSETS</span></td></tr>
+          <tr><td>The script</td><td><span class="f">01 DOCUMENTS / 01 BRIEF</span></td></tr>
+          <tr><td>Proxies</td><td><span class="f">02 ASSETS / 06 PROXY</span>, with a subfolder per shoot day</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PART 2 ============ -->
+<div class="part" id="p2"><span class="pnum">Part 2</span><h2>Premiere Pro bins</h2></div>
+<p class="part-lede">The project panel mirrors the Drive structure. If you know one, you know the other.</p>
+
+<div class="clause" id="c21">
+  <div class="cno">2.1</div>
+  <div class="cbody">
+    <h3>Bin structure</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Start every new project from this bin layout: <span class="f">00 SEQUENCES</span> at the top, then <span class="f">02 ASSETS</span> with the same subfolders as the drive.</p>
+    </div>
+    <figure>
+      <img src="img/shot-08.jpg" alt="The Premiere Pro project panel with the full bin structure expanded" loading="lazy">
+      <figcaption>Sequences first, then assets mirroring the drive.</figcaption>
+    </figure>
+    <div class="flag ok">
+      <span class="lab">Import into a bin, not into the root</span>
+      <p>Never leave footage loose at the top of the project panel. Drop it into its matching bin as you import. Tidying it later never happens.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PART 3 ============ -->
+<div class="part" id="p3"><span class="pnum">Part 3</span><h2>After Effects bins</h2></div>
+<p class="part-lede">Same idea as Premiere, with one difference at the top.</p>
+
+<div class="clause" id="c31">
+  <div class="cno">3.1</div>
+  <div class="cbody">
+    <h3>Bin structure</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>The same structure as Premiere, except compositions live in <span class="f">00 COMP</span> at the top instead of sequences.</p>
+    </div>
+    <figure>
+      <img src="img/shot-09.jpg" alt="The After Effects project panel showing 00 COMP at the top and 02 ASSETS below it" loading="lazy">
+      <figcaption><span class="f">00 COMP</span> holds every composition. <span class="f">02 ASSETS</span> mirrors the drive.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ============ PART 4 ============ -->
+<div class="part" id="p4"><span class="pnum">Part 4</span><h2>DaVinci Resolve</h2></div>
+<p class="part-lede">Colour only. Resolve is not where the edit happens.</p>
+
+<div class="clause" id="c41">
+  <div class="cno">4.1</div>
+  <div class="cbody">
+    <h3>Three bins, that is all</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>The Resolve media pool has three bins and no others: <span class="f">FOOTAGE</span>, <span class="f">XML</span>, <span class="f">REFERENCE</span>.</p>
+    </div>
+    <figure>
+      <img src="img/shot-10.jpg" alt="The DaVinci Resolve media pool with three bins: FOOTAGE, XML and REFERENCE" loading="lazy">
+      <figcaption>Three bins. Resolve is a grading tool here, not an editing one.</figcaption>
+    </figure>
+    <div class="flag">
+      <span class="lab">Edit in Premiere, grade in Resolve</span>
+      <p>All editorial work happens in Premiere. Send the finished edit to Resolve by XML or EDL, grade it, then bring the graded footage back to <span class="f">02 ASSETS / 05 COLOR GRADED</span>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PART 5 ============ -->
+<div class="part" id="p5"><span class="pnum">Part 5</span><h2>Frame.io and export naming</h2></div>
+<p class="part-lede">The part clients see. A wrong name here is visible outside the studio.</p>
+
+<div class="clause" id="c51">
+  <div class="cno">5.1</div>
+  <div class="cbody">
+    <h3>The naming formula</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Every export, on Drive and on Frame.io, is named:</p>
+      <p class="formula">YYMMDD_Project Name_[ADDITIONAL INFO]_Draft 00</p>
+    </div>
+    <figure>
+      <img src="img/shot-11.jpg" alt="The export naming formula broken into its parts" loading="lazy">
+      <figcaption>The same formula applies to files on Drive and uploads to Frame.io.</figcaption>
+    </figure>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Which revision</th><th>What the number does</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Internal revision</strong></td><td>Add a decimal</td><td class="num">Draft 1.1, then Draft 1.2</td></tr>
+          <tr><td><strong>Client revision</strong></td><td>Bump the whole number</td><td class="num">Draft 1.2 becomes Draft 2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The optional middle piece describes the version, not the project: <span class="f">lowres</span>, <span class="f">graded</span>, <span class="f">vertical</span>, <span class="f">no music</span>.</p>
+  </div>
+</div>
+
+<div class="clause" id="c52">
+  <div class="cno">5.2</div>
+  <div class="cbody">
+    <h3>Check before you create a Frame.io project</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Always look for an existing project first. Do not create duplicates or variations of a project name without approval.</p>
+    </div>
+    <figure>
+      <img src="img/shot-12.jpg" alt="Left, four near-identical project names for the same client. Right, projects named consistently in the YYMM format" loading="lazy">
+      <figcaption>Four names for one client on the left. One consistent naming pattern on the right.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="clause" id="c53">
+  <div class="cno">5.3</div>
+  <div class="cbody">
+    <h3>Recurring projects use YYMM</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>A recurring project is named <span class="f">YYMM &ndash; Client &ndash; Title</span>. Never a written month and year.</p>
+    </div>
+    <figure>
+      <img src="img/shot-13.jpg" alt="Correct YYMM dash client dash title naming beside incorrect written month and year folders" loading="lazy">
+      <figcaption>Numbers sort. Written months do not.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="clause" id="c54">
+  <div class="cno">5.4</div>
+  <div class="cbody">
+    <h3>Two stacks, one folder</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>Everything for a project lives in <strong>one</strong> Frame.io folder. Inside it, make <strong>two stacks</strong>: one for internal drafts, one for client deliverables. Do not split them into separate folders.</p>
+    </div>
+    <figure>
+      <img src="img/shot-14.jpg" alt="Left, separate CLIENT and INTERNAL folders. Right, one folder containing two stacks" loading="lazy">
+      <figcaption>Separate folders on the left. Two stacks in one folder on the right.</figcaption>
+    </figure>
+    <ol>
+      <li><strong>One folder for everything.</strong> Internal and client exports share it.</li>
+      <li><strong>Two stacks inside it.</strong> Internal drafts in one, client deliverables in the other.</li>
+      <li><strong>Only stack once the next version exists.</strong> Never stack the draft currently under review, or reviewers lose it.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="clause" id="c55">
+  <div class="cno">5.5</div>
+  <div class="cbody">
+    <h3>Handover and deletion</h3>
+    <div class="the-rule">
+      <span class="lab">The rule</span>
+      <p>A handover folder is named <span class="f">HANDOVER &ndash; YYMMDD &ndash; PROJECT NAME</span>. <strong>Never delete a file without approval.</strong></p>
+    </div>
+    <figure>
+      <img src="img/shot-15.jpg" alt="A correctly named handover folder" loading="lazy">
+      <figcaption>Deleting is the one action on this page that cannot be undone. Ask first, every time.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ============ PART 6 ============ -->
+<div class="part" id="p6"><span class="pnum">Part 6</span><h2>Cheat sheet</h2></div>
+<p class="part-lede">The five names you will actually need.</p>
+
+<div class="clause" id="c61">
+  <div class="cno">6.1</div>
+  <div class="cbody">
+    <h3>Naming, at a glance</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>What it is</th><th>Format</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>First export</td><td class="num">YYMMDD_Name_Draft 1</td><td class="num">250702_Client_Draft 1</td></tr>
+          <tr><td>Internal revision</td><td class="num">Draft 1.1, 1.2 …</td><td class="num">250702_Client_Draft 1.1</td></tr>
+          <tr><td>Client revision</td><td class="num">Draft 2, 3 …</td><td class="num">250702_Client_Draft 2</td></tr>
+          <tr><td>Frame.io project</td><td class="num">YYMM &ndash; Client &ndash; Title</td><td class="num">2506 &ndash; Client &ndash; Remix</td></tr>
+          <tr><td>Handover folder</td><td class="num">HANDOVER &ndash; YYMMDD &ndash; Name</td><td class="num">HANDOVER &ndash; 250702 &ndash; Client</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="clause" id="c62">
+  <div class="cno">6.2</div>
+  <div class="cbody">
+    <h3>The four things people get wrong</h3>
+    <ul>
+      <li>Client files mixed in with stock footage. They go in <span class="f">00 CLIENT ASSETS</span>.</li>
+      <li>Footage left loose at the root of the project panel instead of in a bin.</li>
+      <li>A new Frame.io project created when one already exists under a slightly different name.</li>
+      <li>Internal and client exports split into two Frame.io folders instead of two stacks in one.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>Version September 2026. A guide under the <a href="https://planariastudio.github.io/planaria-employee-handbook/">Employee Handbook</a>.</p>
+</footer>
+
+</main>
+</div>
+<script>window.__GUIDE_NAV__ = [{"href":"https://planariastudio.github.io/planaria-employee-handbook/","label":"Handbook"}];</script>
+<script>
+// Adds the cross-links into the guide's own top bar. Keeps the guide files themselves
+// untouched, so the same file can be published as an artifact or to the web.
+(function () {
+  var bar = document.querySelector('.topbar-in');
+  if (!bar) return;
+  var chip = bar.querySelector('.aud');
+  var wrap = document.createElement('span');
+  wrap.style.cssText = 'display:flex;gap:14px;align-items:center;margin-left:18px;font-size:13px';
+  var links = window.__GUIDE_NAV__ || [];
+  links.forEach(function (l) {
+    var a = document.createElement('a');
+    a.href = l.href;
+    a.textContent = l.label;
+    a.style.cssText = 'color:var(--muted);text-decoration:none;white-space:nowrap';
+    a.onmouseover = function () { a.style.color = 'var(--ink)'; };
+    a.onmouseout  = function () { a.style.color = 'var(--muted)'; };
+    wrap.appendChild(a);
+  });
+  if (chip) bar.insertBefore(wrap, chip); else bar.appendChild(wrap);
+})();
+</script>
+</body>
+</html>
